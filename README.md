@@ -1,13 +1,15 @@
 # Laravel Common Package
 
-A foundational common package for Laravel applications by lockmaey. This package provides a solid base of shared utilities, traits, interfaces, enums, and helpers meant to be reused across different projects.
+A foundational common package for Laravel applications by common-my. This package provides a solid base of shared utilities, traits, interfaces, enums, and helpers meant to be reused across different projects.
+
+Repository: [common-my/laravel-common](https://github.com/common-my/laravel-common)
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require lockmaey/laravel-common
+composer require common-my/laravel-common
 ```
 
 ## Features
