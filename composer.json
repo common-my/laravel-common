@@ -1,6 +1,6 @@
 {
     "name": "lockmaey/laravel-common",
-    "description": "A Base Common Vintana Labs Package",
+    "description": "A Base Common Package",
     "keywords": [
         "laravel",
         "base",
@@ -10,8 +10,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Vintana Labs",
-            "email": "info@vintanalabs.com"
+            "name": "lockmaey",
+            "email": "lockmaey@gmail.com"
         }
     ],
     "require": {
