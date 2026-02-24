@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Lockmaey\LaravelCommon\Enums;
+namespace CommonMy\LaravelCommon\Enums;
 
 use Symfony\Component\HttpFoundation\Response;
-use Lockmaey\LaravelCommon\Interfaces\ErrorCodeInterface;
-use Lockmaey\LaravelCommon\Traits\HasEnumArray;
-use Lockmaey\LaravelCommon\Traits\HasEnumValue;
+use CommonMy\LaravelCommon\Interfaces\ErrorCodeInterface;
+use CommonMy\LaravelCommon\Traits\HasEnumArray;
+use CommonMy\LaravelCommon\Traits\HasEnumValue;
 
 enum ErrorCode: int implements ErrorCodeInterface
 {

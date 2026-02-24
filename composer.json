@@ -31,21 +31,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Lockmaey\\LaravelCommon\\": "src/"
+            "CommonMy\\LaravelCommon\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Lockmaey\\LaravelCommon\\Tests\\": "tests/"
+            "CommonMy\\LaravelCommon\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Lockmaey\\LaravelCommon\\LaravelCommonServiceProvider"
+                "CommonMy\\LaravelCommon\\LaravelCommonServiceProvider"
             ],
             "aliases": {
-                "LaravelCommon": "Lockmaey\\LaravelCommon\\Facades\\LaravelCommon"
+                "LaravelCommon": "CommonMy\\LaravelCommon\\Facades\\LaravelCommon"
             }
         }
     },

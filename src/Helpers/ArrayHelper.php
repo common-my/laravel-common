@@ -1,6 +1,6 @@
 <?php
 
-namespace Lockmaey\LaravelCommon\Helpers;
+namespace CommonMy\LaravelCommon\Helpers;
 
 class ArrayHelper
 {

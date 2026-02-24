@@ -1,6 +1,6 @@
 <?php
 
-namespace Lockmaey\LaravelCommon\Traits;
+namespace CommonMy\LaravelCommon\Traits;
 
 use App\Models\CentralUser;
 

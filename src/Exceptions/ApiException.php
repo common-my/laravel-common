@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Lockmaey\LaravelCommon\Exceptions;
+namespace CommonMy\LaravelCommon\Exceptions;
 
 use Exception;
 use Throwable;
-use Lockmaey\LaravelCommon\Interfaces\ErrorCodeInterface;
+use CommonMy\LaravelCommon\Interfaces\ErrorCodeInterface;
 
 class ApiException extends Exception
 {

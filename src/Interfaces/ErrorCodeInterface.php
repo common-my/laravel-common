@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lockmaey\LaravelCommon\Interfaces;
+namespace CommonMy\LaravelCommon\Interfaces;
 
 interface ErrorCodeInterface
 {

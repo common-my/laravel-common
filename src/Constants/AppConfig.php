@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lockmaey\LaravelCommon\Constants;
+namespace CommonMy\LaravelCommon\Constants;
 
 class AppConfig
 {

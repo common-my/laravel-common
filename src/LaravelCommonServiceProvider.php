@@ -1,6 +1,6 @@
 <?php
 
-namespace Lockmaey\LaravelCommon;
+namespace CommonMy\LaravelCommon;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -1,8 +1,8 @@
 <?php
 
-use Lockmaey\LaravelCommon\Enums\ErrorCode;
-use Lockmaey\LaravelCommon\Exceptions\ApiException;
-use Lockmaey\LaravelCommon\Interfaces\ErrorCodeInterface;
+use CommonMy\LaravelCommon\Enums\ErrorCode;
+use CommonMy\LaravelCommon\Exceptions\ApiException;
+use CommonMy\LaravelCommon\Interfaces\ErrorCodeInterface;
 
 /**
  * @throws ApiException
