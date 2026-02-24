@@ -16,14 +16,14 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/contracts": "^12.0",
-        "illuminate/database": "^12.0",
-        "illuminate/support": "^12.0",
-        "illuminate/http": "^12.0",
-        "illuminate/console": "^12.0",
-        "illuminate/validation": "^12.0",
-        "illuminate/cache": "^12.0",
-        "laravel/framework": "^12.0"
+        "illuminate/contracts": "^11.0|^12.0",
+        "illuminate/database": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/http": "^11.0|^12.0",
+        "illuminate/console": "^11.0|^12.0",
+        "illuminate/validation": "^11.0|^12.0",
+        "illuminate/cache": "^11.0|^12.0",
+        "laravel/framework": "^11.0|^12.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.0",
