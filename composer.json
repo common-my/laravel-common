@@ -1,0 +1,57 @@
+{
+    "name": "lockmaey/laravel-common",
+    "description": "A Base Common Vintana Labs Package",
+    "keywords": [
+        "laravel",
+        "base",
+        "common"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vintana Labs",
+            "email": "info@vintanalabs.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/contracts": "^12.0",
+        "illuminate/database": "^12.0",
+        "illuminate/support": "^12.0",
+        "illuminate/http": "^12.0",
+        "illuminate/console": "^12.0",
+        "illuminate/validation": "^12.0",
+        "illuminate/cache": "^12.0",
+        "laravel/framework": "^12.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lockmaey\\LaravelCommon\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Lockmaey\\LaravelCommon\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lockmaey\\LaravelCommon\\LaravelCommonServiceProvider"
+            ],
+            "aliases": {
+                "LaravelCommon": "Lockmaey\\LaravelCommon\\Facades\\LaravelCommon"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
