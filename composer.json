@@ -32,7 +32,14 @@
     "autoload": {
         "psr-4": {
             "CommonMy\\LaravelCommon\\": "src/"
-        }
+        },
+        "files": [
+            "src/Helpers/Abort.php",
+            "src/Helpers/ArrayHelper.php",
+            "src/Helpers/ImageHelper.php",
+            "src/Helpers/NumberHelper.php",
+            "src/Helpers/Response.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
