@@ -45,7 +45,7 @@ This package provides numerous foundational tools to enforce strict typing, clea
 Use the standard custom exceptions seamlessly across your application controllers or services:
 
 ```php
-use Lockmaey\LaravelCommon\Enums\ErrorCode;
+use CommonMy\LaravelCommon\Enums\ErrorCode;
 
 abortWithError(ErrorCode::TENANT_NOT_FOUND);
 ```
@@ -56,7 +56,7 @@ If your main application has custom error states, create your own enum implement
 ```php
 namespace App\Enums;
 
-use Lockmaey\LaravelCommon\Interfaces\ErrorCodeInterface;
+use CommonMy\LaravelCommon\Interfaces\ErrorCodeInterface;
 
 enum AppErrorCode: int implements ErrorCodeInterface {
     case INVENTORY_MISSING = 5001;
