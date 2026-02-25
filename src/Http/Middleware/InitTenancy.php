@@ -35,10 +35,17 @@ class InitTenancy
         $tenantModel = config('laravel-common.tenant_model', 'App\Models\Tenant');
         $tenant = null;
 
+        // Use central connection if available to avoid using tenant connection for lookup
+        $centralConnection = config('tenancy.database.central_connection', 'mysql');
+
         if ($tenantId) {
-            $tenant = $tenantModel::query()->find($tenantId);
+            $tenant = $tenantModel::on($centralConnection)->find($tenantId);
+
+            if (!$tenant && class_exists(\Stancl\Tenancy\Exceptions\TenantCouldNotBeIdentifiedById::class)) {
+                throw new \Stancl\Tenancy\Exceptions\TenantCouldNotBeIdentifiedById($tenantId);
+            }
         } elseif ($appId) {
-            $tenant = $tenantModel::query()->where('app_id', $appId)->first();
+            $tenant = $tenantModel::on($centralConnection)->where('app_id', $appId)->first();
             if ($tenant) {
                 // Standardize header for subsequent middlewares (like Stancl\Tenancy)
                 $request->headers->set('X-Tenant', $tenant->id);
