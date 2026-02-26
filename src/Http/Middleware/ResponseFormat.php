@@ -56,12 +56,31 @@ class ResponseFormat
                 return $response;
             }
 
+            $responseData = $data['data'] ?? $data;
+
+            $message = $data['__message'] ?? $data['message'] ?? null;
+            if ($message === null && isset($response->original) && is_array($response->original)) {
+                $message = $response->original['__message'] ?? $response->original['message'] ?? null;
+            }
+            if ($message === null && is_array($responseData) && isset($responseData['__message'])) {
+                $message = $responseData['__message'];
+            }
+            if ($message === null && is_array($responseData) && isset($responseData['message'])) {
+                $message = $responseData['message'];
+            }
+
+            if (is_array($responseData)) {
+                unset($responseData['__message'], $responseData['message']);
+            }
+
             // Create formatted response, preserving original data structure via array_merge
             $resp = array_merge($data, [
                 'success'   => true,
-                'data'      => $data['data'] ?? $data,
-                '__message' => $data['message'] ?? (isset($response->original) && is_array($response->original) ? ($response->original['message'] ?? null) : null),
+                'data'      => $responseData,
+                '__message' => $message,
             ]);
+
+            unset($resp['message']);
 
             // Format meta if available (pagination)
             if (isset($data['meta']['links'])
