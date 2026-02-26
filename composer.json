@@ -1,6 +1,5 @@
 {
     "name": "common-my/laravel-common",
-    "version": "0.0.1",
     "description": "A Base Common Package",
     "keywords": [
         "laravel",
