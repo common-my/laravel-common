@@ -45,15 +45,35 @@ class ResponseFormat
             ($response instanceof JsonResponse || $response instanceof Response) &&
             in_array((int) $response->status(), [200, 201, 204])
         ) {
-            $data = $response instanceof JsonResponse ? $response->getData(true) : $response->getContent();
+            $data = $response instanceof JsonResponse ? $response->getData() : $response->getContent();
 
             if (is_string($data)) {
-                $data = json_decode($data, true);
+                $data = json_decode($data, false);
             }
 
-            // If data is not an array (after decoding if it was a string), it's not something we want to format
+            // Ensure $data is an array for the following logic, but preserve nested objects
+            if (is_object($data)) {
+                $data = (array) $data;
+            }
+
+            // If data is not an array (after decoding/casting), it's not something we want to format
             if (! is_array($data)) {
                 return $response;
+            }
+
+            // Ensure structural fields are arrays for logic below
+            if (isset($data['meta']) && is_object($data['meta'])) {
+                $data['meta'] = (array) $data['meta'];
+                if (isset($data['meta']['links']) && is_array($data['meta']['links'])) {
+                    foreach ($data['meta']['links'] as &$link) {
+                        if (is_object($link)) {
+                            $link = (array) $link;
+                        }
+                    }
+                }
+            }
+            if (isset($data['links']) && is_object($data['links'])) {
+                $data['links'] = (array) $data['links'];
             }
 
             $responseData = array_key_exists('data', $data) ? $data['data'] : $data;
@@ -62,6 +82,12 @@ class ResponseFormat
             if ($message === null && isset($response->original) && is_array($response->original)) {
                 $message = $response->original['__message'] ?? $response->original['message'] ?? null;
             }
+            if ($message === null && is_object($responseData) && isset($responseData->{'__message'})) {
+                $message = $responseData->{'__message'};
+            }
+            if ($message === null && is_object($responseData) && isset($responseData->{'message'})) {
+                $message = $responseData->{'message'};
+            }
             if ($message === null && is_array($responseData) && isset($responseData['__message'])) {
                 $message = $responseData['__message'];
             }
@@ -69,7 +95,9 @@ class ResponseFormat
                 $message = $responseData['message'];
             }
 
-            if (is_array($responseData)) {
+            if (is_object($responseData)) {
+                unset($responseData->{'__message'}, $responseData->{'message'});
+            } elseif (is_array($responseData)) {
                 unset($responseData['__message'], $responseData['message']);
             }
 
@@ -122,8 +150,10 @@ class ResponseFormat
                 $resp['meta'] = $meta;
                 
                 // Keep 'data' clean in a paginated response
-                if (isset($resp['data']['meta'])) {
+                if (is_array($resp['data']) && isset($resp['data']['meta'])) {
                     unset($resp['data']['meta']);
+                } elseif (is_object($resp['data']) && isset($resp['data']->meta)) {
+                    unset($resp['data']->meta);
                 }
 
                 unset($resp['meta']['data']);
