@@ -45,14 +45,10 @@ class ResponseFormat
             ($response instanceof JsonResponse || $response instanceof Response) &&
             in_array((int) $response->status(), [200, 201, 204])
         ) {
-            $data = $response instanceof JsonResponse ? $response->getData() : $response->getContent();
+            $data = $response instanceof JsonResponse ? $response->getData(true) : $response->getContent();
 
             if (is_string($data)) {
-                $data = json_decode($data, false);
-            }
-
-            if (is_object($data)) {
-                $data = (array) $data;
+                $data = json_decode($data, true);
             }
 
             // If data is not an array (after decoding if it was a string), it's not something we want to format
@@ -60,7 +56,7 @@ class ResponseFormat
                 return $response;
             }
 
-            $responseData = $data['data'] ?? $data;
+            $responseData = array_key_exists('data', $data) ? $data['data'] : $data;
 
             $message = $data['__message'] ?? $data['message'] ?? null;
             if ($message === null && isset($response->original) && is_array($response->original)) {
@@ -75,6 +71,10 @@ class ResponseFormat
 
             if (is_array($responseData)) {
                 unset($responseData['__message'], $responseData['message']);
+            }
+
+            if ($responseData === null) {
+                $responseData = (object) [];
             }
 
             // Create formatted response, preserving original data structure via array_merge
