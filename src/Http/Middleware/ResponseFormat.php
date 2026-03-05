@@ -101,10 +101,6 @@ class ResponseFormat
                 unset($responseData['__message'], $responseData['message']);
             }
 
-            if ($responseData === null) {
-                $responseData = (object) [];
-            }
-
             // Create formatted response, preserving original data structure via array_merge
             $resp = array_merge($data, [
                 'success'   => true,
