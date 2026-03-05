@@ -45,10 +45,14 @@ class ResponseFormat
             ($response instanceof JsonResponse || $response instanceof Response) &&
             in_array((int) $response->status(), [200, 201, 204])
         ) {
-            $data = $response instanceof JsonResponse ? $response->getData(true) : $response->getContent();
+            $data = $response instanceof JsonResponse ? $response->getData() : $response->getContent();
 
             if (is_string($data)) {
-                $data = json_decode($data, true);
+                $data = json_decode($data, false);
+            }
+
+            if (is_object($data)) {
+                $data = (array) $data;
             }
 
             // If data is not an array (after decoding if it was a string), it's not something we want to format
