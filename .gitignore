@@ -7105,3 +7105,4 @@
 /vendor/autoload.php
 /.idea/
 /vendor/
+/laravel-common.iml
