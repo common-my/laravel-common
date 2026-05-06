@@ -101,12 +101,28 @@ class ResponseFormat
                 unset($responseData['__message'], $responseData['message']);
             }
 
-            // Create formatted response, preserving original data structure via array_merge
-            $resp = array_merge($data, [
-                'success'   => true,
-                'data'      => $responseData,
-                '__message' => $message,
-            ]);
+            // Create formatted response. If it was already wrapped, preserve original top-level keys.
+            if (array_key_exists('data', $data)) {
+                $resp = array_merge($data, [
+                    'success'   => true,
+                    'data'      => $responseData,
+                    '__message' => $message,
+                ]);
+            } else {
+                $resp = [
+                    'success'   => true,
+                    'data'      => $responseData,
+                    '__message' => $message,
+                ];
+
+                if (isset($data['meta'])) {
+                    $resp['meta'] = $data['meta'];
+                }
+
+                if (isset($data['links'])) {
+                    $resp['links'] = $data['links'];
+                }
+            }
 
             unset($resp['message']);
 
