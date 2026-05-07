@@ -22,4 +22,14 @@ return [
     |
     */
     'initialize_tenancy' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Organization Tenant Pivot Table
+    |--------------------------------------------------------------------------
+    |
+    | The table name used for organization-brand relationship verification.
+    |
+    */
+    'organization_tenant_table' => 'organization_tenant',
 ];
